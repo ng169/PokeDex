@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
+import { toFirstCharUppercase } from "../usefulFunc/firstCharUpperCase"
 const useStyle = makeStyles(theme => (
     {
         pokedexContainer: {
@@ -97,9 +98,6 @@ const Pokedex = () => {
     }, [])
     const getPokemonCard = (pokemonId) => {
         const { id, name, sprite } = pokemonData[pokemonId];
-        const toFirstCaseUppercase = name =>
-            name.charAt(0).toUpperCase() + name.slice(1)
-
         return (
             <Grid item xs={12} sm={4} key={pokemonId}>
                 <Card onClick={() => history.push(`/PokeDex/${pokemonId}`)}>
@@ -109,7 +107,7 @@ const Pokedex = () => {
                         style={{ width: "130px", height: "130px" }}
                     />
                     <CardContent>
-                        <Typography>{`${id}.${(toFirstCaseUppercase(name))}`}</Typography>
+                        <Typography>{`${id}.${(toFirstCharUppercase(name))}`}</Typography>
                     </CardContent>
                 </Card>
             </Grid>

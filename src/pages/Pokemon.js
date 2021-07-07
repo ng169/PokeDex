@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import { Typography, Link, CircularProgress, Button } from "@material-ui/core";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
-
+import { toFirstCharUppercase } from "../usefulFunc/firstCharUpperCase"
 const Pokemon = () => {
     const history = useHistory();
     const { pokemonId } = useParams();
@@ -21,8 +20,6 @@ const Pokemon = () => {
             });
     }, [pokemonId]);
 
-    const toFirstCharUppercase = name =>
-        name.charAt(0).toUpperCase() + name.slice(1)
     const generatePokemonJSX = (pokemon) => {
         const { name, id, species, height, weight, types, sprites } = pokemon;
         const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
