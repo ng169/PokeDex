@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Link, CircularProgress, Button } from "@material-ui/core";
+import { Typography, Link, CircularProgress } from "@material-ui/core";
 import axios from "axios";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import AppBarPages from "../components/AppBarPages";
 import { toFirstCharUppercase } from "../usefulFunc/firstCharUpperCase"
 const Pokemon = () => {
-    const history = useHistory();
     const { pokemonId } = useParams();
     const [pokemon, setPokemon] = useState(undefined);
 
@@ -26,15 +26,14 @@ const Pokemon = () => {
         const { front_default } = sprites;
         return (
             <>
-                <Typography variant="h1">
+                <Typography variant="h3">
                     {`${id}.`} {toFirstCharUppercase(name)}
                     <img src={front_default} alt="spritepokemon" />
                 </Typography>
-                <img style={{ width: "300px", height: "300px" }} src={fullImageUrl} alt="imgpokemon" />
-                <Typography variant="h3">Pokemon Info</Typography>
+                <img style={{ width: "250px", height: "250px" }} src={fullImageUrl} alt="imgpokemon" />
                 <Typography>
                     {"Species: "}
-                    <Link href={species.url}>{species.name} </Link>
+                    <Link href={species.url}>{toFirstCharUppercase(species.name)} </Link>
                 </Typography>
                 <Typography>Height: {height} </Typography>
                 <Typography>Weight: {weight} </Typography>
@@ -50,15 +49,10 @@ const Pokemon = () => {
 
     return (
         <>
+            <AppBarPages />
             {pokemon === undefined && <CircularProgress />}
             {pokemon !== undefined && pokemon && generatePokemonJSX(pokemon)}
             {pokemon === false && <Typography> Pokemon not found</Typography>}
-
-            {pokemon !== undefined && (
-                <Button variant="contained" onClick={() => history.push("/PokeDex/")}>
-                    back to pokedex
-                </Button>
-            )}
         </>
     );
 };
