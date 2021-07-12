@@ -74,7 +74,7 @@ function AppBarPokeDex({ handleSearchChange }) {
                             </div>
                             <InputBase
                                 onChange={handleSearchChange}
-                                placeholder="Search…"
+                                placeholder="Search..."
                                 classes={{
                                     root: classes.inputRoot,
                                     input: classes.inputInput,
@@ -84,7 +84,6 @@ function AppBarPokeDex({ handleSearchChange }) {
                         </div>
                     </Toolbar>
                 </div>
-
             </AppBar>
         </>
     )
